@@ -1,14 +1,15 @@
 #!/usr/bin/env sh
 
+# Current path
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
+# ZSH
+ln -sf $DOTFILES/.zshrc $HOME/.zshrc
 
+# Neovim
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
-ln -sf $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+# Tmux
+ln -sf $DOTFILES/.tmux.conf $HOME/.tmux.conf
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
