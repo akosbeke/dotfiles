@@ -13,3 +13,5 @@ ln -s $DOTFILES/nvim $HOME/.config/nvim
 # Tmux
 ln -sf $DOTFILES/.tmux.conf $HOME/.tmux.conf
 
+# Alacritty
+ln -sf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml
