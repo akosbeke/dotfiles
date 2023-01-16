@@ -23,6 +23,8 @@ font:
     style: Bold Italic
 
   size: 14
+  offset:
+    y: 2
 
 # Colors (Gruvbox dark)
 colors:
