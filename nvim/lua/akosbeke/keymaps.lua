@@ -11,6 +11,9 @@ vim.keymap.set('n', '<leader>oo', ':!open %<cr><cr>')
 -- Run the eslint fixer 
 vim.keymap.set('n', 'efa', ':EslintFixAll<cr>')
 
+-- List git conflicts
+vim.keymap.set('n', '<leader>cl', ':GitConflictListQf<cr>')
+
 -- Move text up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
