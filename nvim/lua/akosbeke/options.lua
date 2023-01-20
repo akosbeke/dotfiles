@@ -6,6 +6,7 @@ vim.o.number = true
 vim.o.title = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.opt.smartindent = true
 vim.o.wildmode = 'longest:full,full'
 vim.o.mouse = 'a'
 vim.o.splitright = true
@@ -16,3 +17,5 @@ vim.o.termguicolors = true
 vim.o.confirm = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
+vim.opt.hlsearch = false
+
