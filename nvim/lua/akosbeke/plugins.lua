@@ -103,9 +103,9 @@ return require('packer').startup(function(use)
         },
     }
 
-    use({
+    use {
         'L3MON4D3/LuaSnip',
-    })
+    }
 
     use {
         'akinsho/bufferline.nvim',
@@ -123,6 +123,10 @@ return require('packer').startup(function(use)
 
     use {
         'jessarcher/vim-sayonara',
+    }
+
+    use {
+        'stevearc/vim-arduino',
     }
 
 end)

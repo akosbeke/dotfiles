@@ -9,6 +9,7 @@ lsp.ensure_installed({
     'cssls',
     'intelephense',
     'graphql',
+    'arduino_language_server',
 })
 
 -- Fix Undefined global 'vim'
@@ -20,6 +21,18 @@ lsp.configure('sumneko_lua', {
             }
         }
     }
+})
+
+lsp.configure('arduino_language_server', {
+    cmd = {
+        'arduino-language-server',
+        '-cli-config',
+        '/Users/akosbeke/Library/Arduino15/arduino-cli.yaml',
+        '-clangd',
+        'clangd',
+        '-cli',
+        'arduino-cli'
+    },
 })
 
 
