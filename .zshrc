@@ -156,3 +156,5 @@ alias lt-upload="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:trans
 alias lt-upload-dr="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:translations:upload --dry-run)"
 alias lt-download="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:translations:download --parent-branch master)"
 export PATH="/opt/homebrew/opt/php@8.1/bin:$PATH"
+
+eval "$(github-copilot-cli alias -- "$0")"
