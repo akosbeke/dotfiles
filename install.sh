@@ -18,6 +18,10 @@ ln -s $DOTFILES/yabai $HOME/.config/yabai
 rm -rf $HOME/.config/skhd
 ln -s $DOTFILES/skhd $HOME/.config/skhd
 
+# Karabiner
+rm -rf $HOME/.config/karabiner
+ln -s $DOTFILES/karabiner $HOME/.config/karabiner
+
 # Tmux
 ln -sf $DOTFILES/.tmux.conf $HOME/.tmux.conf
 
