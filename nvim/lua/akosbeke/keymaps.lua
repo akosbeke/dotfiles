@@ -34,3 +34,7 @@ vim.api.nvim_create_autocmd(
   "FileType", {
   pattern={"qf"},
   command=[[nnoremap <buffer> <CR> <CR>:cclose<CR>]]})
+
+-- Next buffer
+vim.keymap.set('n', 'bh', ':bprev<cr>')
+vim.keymap.set('n', 'bl', ':bnext<cr>')
