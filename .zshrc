@@ -115,6 +115,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #alias code="code-insiders"
+alias nv="nvim"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
 alias gv='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias gr="git fetch && git rebase origin/master"
 alias ga="git add --all"
