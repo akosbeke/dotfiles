@@ -51,4 +51,5 @@ yabai -m rule --add app="^Quick Look$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 # Raycast
 yabai -m rule --add app="^Raycast$" manage=off
-
+# browserosaurus
+yabai -m rule --add app="^Browserosaurus$" manage=off
