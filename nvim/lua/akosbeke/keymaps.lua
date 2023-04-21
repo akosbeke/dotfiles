@@ -35,6 +35,11 @@ vim.api.nvim_create_autocmd(
   pattern={"qf"},
   command=[[nnoremap <buffer> <CR> <CR>:cclose<CR>]]})
 
--- Next buffer
-vim.keymap.set('n', 'bh', ':bprev<cr>')
-vim.keymap.set('n', 'bl', ':bnext<cr>')
+-- Next and previous buffer
+vim.keymap.set('n', '<leader>B', ':bprev<cr>')
+vim.keymap.set('n', '<leader>b', ':bnext<cr>')
+
+-- Open git status via fugitive
+vim.keymap.set('n', '<leader>gs', ':G<cr>')
+-- Open git blame via fugitive
+vim.keymap.set('n', '<leader>gb', ':G blame<cr>')
