@@ -35,7 +35,7 @@ yabai -m config window_border on
 # Mouse
 #############
 
-yabai -m config mouse_follows_focus on
+yabai -m config mouse_follows_focus off
 
 #############
 # Ignored apps

@@ -43,3 +43,5 @@ vim.keymap.set('n', '<leader>b', ':bnext<cr>')
 vim.keymap.set('n', '<leader>gs', ':G<cr>')
 -- Open git blame via fugitive
 vim.keymap.set('n', '<leader>gb', ':G blame<cr>')
+-- Open lazygit floating
+vim.keymap.set('n', '<leader>lg', ':LazyGit<cr>')

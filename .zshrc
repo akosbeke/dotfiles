@@ -143,6 +143,7 @@ export PATH="$HOME/.symfony/bin:$PATH"
 # Lingoda Dev Aliases
 export LINGODA_PATH="~/Lingoda"
 alias lingoda="sh $LINGODA_PATH/lingoda/linguando/devops/localdev/localdev.sh"
+alias lm="make -s -C $LINGODA_PATH/lingoda/linguando/devops/localdev/docker"
 alias l-student="( (nginx -s reload || nginx) && cd $LINGODA_PATH/lingoda/linguando && yarn student_frontend:watch)"
 alias l-student-sym="(cd $LINGODA_PATH/lingoda/linguando && yarn student:watch)"
 alias l-teacher="(cd $LINGODA_PATH/lingoda/linguando && yarn teacher_frontend:watch)"

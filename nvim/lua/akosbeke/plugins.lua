@@ -61,6 +61,10 @@ return require('packer').startup(function(use)
     }
 
     use {
+        'kdheepak/lazygit.nvim',
+    }
+
+    use {
         'akinsho/git-conflict.nvim',
         tag = "*",
         config = function()
