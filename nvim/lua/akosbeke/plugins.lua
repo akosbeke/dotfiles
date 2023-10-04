@@ -1,93 +1,70 @@
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-    use { 'tpope/vim-commentary' }
-    use { 'github/copilot.vim' }
-    use {
-        "windwp/nvim-autopairs",
-        config = function()
-            require("nvim-autopairs").setup {}
-        end
-    }
-
-    use {
+local plugins = {
+    'tpope/vim-commentary',
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {}
+    },
+    {
         "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup {
-            }
-        end
-    }
-
-    use {
+        dependencies = { { "nvim-lua/plenary.nvim" } },
+        opts = {}
+    },
+    {
         'norcalli/nvim-colorizer.lua',
-        config = function()
-            require("colorizer").setup {}
-        end
-    }
-
-    use {
+        opts = {}
+    },
+    {
         "ellisonleao/gruvbox.nvim",
-        as = 'gruvbox',
-    }
-
-    use {
-        'voldikss/vim-floaterm',
-    }
-
-    use {
+        name = 'gruvbox',
+    },
+    'voldikss/vim-floaterm',
+    {
         'nvim-lualine/lualine.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
-    }
-
-    use {
-        "alexghergh/nvim-tmux-navigation",
-    }
-
-    use {
+        dependencies = { { 'kyazdani42/nvim-web-devicons' } },
+    },
+    'alexghergh/nvim-tmux-navigation',
+    {
         'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons',
-    }
-
-    use {
-        'lukas-reineke/indent-blankline.nvim',
-    }
-
-    use {
+        dependencies = { { 'kyazdani42/nvim-web-devicons' } },
+    },
+    'lukas-reineke/indent-blankline.nvim',
+    {
         'tpope/vim-fugitive',
-        requires = 'tpope/vim-rhubarb',
+        dependencies = { { 'tpope/vim-rhubarb' } },
         cmd = 'G',
-    }
-
-    use {
-        'kdheepak/lazygit.nvim',
-    }
-
-    use {
+    },
+    'kdheepak/lazygit.nvim',
+    {
         'akinsho/git-conflict.nvim',
-        tag = "*",
-        config = function()
-            require('git-conflict').setup()
-        end,
-    }
-
-    use {
+        version = "*",
+        config = true
+    },
+    {
         'lewis6991/gitsigns.nvim',
-        requires = 'nvim-lua/plenary.nvim',
-        config = function()
-            require('gitsigns').setup { sign_priority = 20 }
-        end,
-    }
-
-    use {
+        dependencies = { { 'nvim-lua/plenary.nvim' } },
+        opts = { sign_priority = 20 }
+    },
+    {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-    }
-
-    use {
+        build = ':TSUpdate',
+    },
+    {
         'VonHeikemen/lsp-zero.nvim',
-        requires = {
+        dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
@@ -100,31 +77,27 @@ return require('packer').startup(function(use)
             { 'saadparwaiz1/cmp_luasnip' },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
+            { 'zbirenbaum/copilot.lua' },
+            { 'zbirenbaum/copilot-cmp' },
 
             -- Snippets
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
         },
-    }
-
-    use {
-        'L3MON4D3/LuaSnip',
-    }
-
-    use {
+    },
+    'L3MON4D3/LuaSnip',
+    {
         'nvim-telescope/telescope.nvim',
-        requires = {
+        tag = '0.1.x',
+        dependencies = {
             { 'nvim-lua/plenary.nvim' },
             { 'kyazdani42/nvim-web-devicons' },
         },
-    }
+    },
+    'stevearc/vim-arduino',
+    { import = 'akosbeke.plugins.bufdelete' },
+}
 
-    use {
-        'jessarcher/vim-sayonara',
-    }
+local opts = {}
 
-    use {
-        'stevearc/vim-arduino',
-    }
-
-end)
+require("lazy").setup(plugins, opts)

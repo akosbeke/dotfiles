@@ -1,3 +1,3 @@
 require 'akosbeke.options'
-require 'akosbeke.plugins'
 require 'akosbeke.keymaps'
+require 'akosbeke.plugins'

@@ -2,16 +2,6 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-    'tsserver',
-    'eslint',
-    'lua_ls',
-    'cssls',
-    'intelephense',
-    'graphql',
-    'arduino_language_server',
-})
-
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {
     settings = {
@@ -33,25 +23,6 @@ lsp.configure('arduino_language_server', {
         '-cli',
         'arduino-cli'
     },
-})
-
-
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
-})
-
--- disable completion with tab
--- this helps with copilot setup
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
 })
 
 lsp.set_preferences({
@@ -88,6 +59,41 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  -- Replace the language servers listed here 
+  -- with the ones you want to install
+  ensure_installed = {
+    'tsserver',
+    'eslint',
+    'lua_ls',
+    'cssls',
+    'intelephense',
+    'graphql',
+    'arduino_language_server',
+    },
+  handlers = {
+    lsp.default_setup,
+  },
+})
+
+-- Autocompletion
+local cmp = require('cmp')
+cmp.setup({
+  sources = {
+    {name = 'copilot'},
+    {name = 'nvim_lsp'},
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<CR>'] = cmp.mapping.confirm({
+      -- documentation says this is important.
+      -- I don't know why.
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    })
+  })
+})
 
 lsp.setup()
 
