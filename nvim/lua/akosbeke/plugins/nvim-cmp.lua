@@ -8,15 +8,23 @@ return {
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
-    "zbirenbaum/copilot-cmp", -- copilot cmp connector
   },
   config = function()
     local cmp = require("cmp")
-    local luasnip = require("luasnip")
     local lspkind = require("lspkind")
+
+    local luasnip = require("luasnip")
+    local snip = luasnip.snippet
+    local t = luasnip.text_node
+    local i = luasnip.insert_node
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
+
+    -- console log snippet for typescript
+    luasnip.add_snippets("typescript", {
+      snip({ trig = "clg", dscr = "Console log for JS and TS" }, { t("console.log("), i(1), t(");") }),
+    })
 
     cmp.setup({
       completion = {
@@ -42,7 +50,6 @@ return {
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
-        { name = "copilot" },
       }),
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
