@@ -1,14 +1,14 @@
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
-vim.o.signcolumn = 'yes:2'
+vim.o.signcolumn = "yes:2"
 vim.o.number = true
 vim.o.title = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.opt.smartindent = true
-vim.o.wildmode = 'longest:full,full'
-vim.o.mouse = 'a'
+vim.o.wildmode = "longest:full,full"
+vim.o.mouse = "a"
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.scrolloff = 8
@@ -19,4 +19,3 @@ vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
-
