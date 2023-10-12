@@ -113,6 +113,16 @@ return {
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
     })
 
+    lspconfig["phpactor"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "php" },
+      init_options = {
+        ["language_server_phpstan.enabled"] = false,
+        ["language_server_psalm.enabled"] = false,
+      },
+    })
+
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,

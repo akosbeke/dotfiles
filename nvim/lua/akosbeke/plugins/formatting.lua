@@ -18,6 +18,7 @@ return {
         markdown = { "prettier" },
         graphql = { "prettier" },
         lua = { "stylua" },
+        php = { "php_cs_fixer" },
       },
       format_on_save = {
         lsp_fallback = true,

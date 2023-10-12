@@ -162,6 +162,10 @@ alias lt-generate="(cd $LINGODA_PATH/lingoda/linguando && php bin/console bazing
 alias lt-upload="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:translations:upload)"
 alias lt-upload-dr="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:translations:upload --dry-run)"
 alias lt-download="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:translations:download --parent-branch master)"
+
 export PATH="/opt/homebrew/opt/php@8.1/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.1/sbin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/php@8.1/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/php@8.1/include"
 
 eval "$(github-copilot-cli alias -- "$0")"
