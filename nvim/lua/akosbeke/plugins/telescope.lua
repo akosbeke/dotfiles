@@ -15,6 +15,12 @@ return {
           initial_mode = "normal",
         },
       },
+      defaults = {
+        path_display = {
+          "smart",
+          "absolute",
+        },
+      },
     })
 
     local keymap = vim.keymap
