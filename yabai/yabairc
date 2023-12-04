@@ -53,3 +53,8 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 # browserosaurus
 yabai -m rule --add app="^Browserosaurus$" manage=off
+# Fusion 360
+yabai -m rule --add app="^Fusion 360$" manage=off
+
+
+borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 2>/dev/null 1>&2 &
