@@ -1,37 +1,63 @@
 return {
   "ThePrimeagen/harpoon",
+  branch = "harpoon2",
   dependecies = {
     "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
   },
   config = function()
-    require("harpoon").setup({})
-    require("telescope").load_extension("harpoon")
+    local harpoon = require("harpoon")
+    harpoon.setup({})
+
+    -- basic telescope configuration
+    local conf = require("telescope.config").values
+    local utils = require("telescope.utils")
+    -- local function toggle_telescope(harpoon_files)
+    --   local file_paths = {}
+    --   for _, item in ipairs(harpoon_files.items) do
+    --     local shortened_path = utils.transform_path({}, item.value)
+    --     table.insert(file_paths, shortened_path)
+    --   end
+
+    --   require("telescope.pickers")
+    --     .new({}, {
+    --       prompt_title = "Harpoon",
+    --       finder = require("telescope.finders").new_table({
+    --         results = file_paths,
+    --       }),
+    --       previewer = conf.file_previewer({}),
+    --       sorter = conf.generic_sorter({}),
+    --       path_display = {
+    --         "smart",
+    --         "absolute",
+    --       },
+    --     })
+    --     :find()
+    -- end
 
     local keymap = vim.keymap
 
-    keymap.set(
-      "n",
-      "<leader>hl",
-      "<cmd>Telescope harpoon marks initial_mode=normal<cr>",
-      { noremap = true, silent = true, desc = "Show Harpoon" }
-    )
-    keymap.set(
-      "n",
-      "<leader>ha",
-      '<cmd>lua require("harpoon.mark").add_file()<cr>',
-      { noremap = true, silent = true, desc = "Add file to Harpoon" }
-    )
+    -- keymap.set("n", "<leader>htl", function()
+    --   toggle_telescope(harpoon:list())
+    -- end, { desc = "Open harpoon window" })
+
+    vim.keymap.set("n", "<leader>ha", function()
+      harpoon:list():append()
+    end, { desc = "Add file to harpoon" })
+
+    vim.keymap.set("n", "<leader>hl", function()
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end, { desc = "Open harpoon quick list" })
+
+    vim.keymap.set("n", "<leader>hc", function()
+      harpoon:list():clear()
+    end, { desc = "Clears the harpoon list" })
+
     keymap.set(
       "n",
       "<leader>hd",
       '<cmd>lua require("harpoon.mark").rm_file()<cr>',
       { noremap = true, silent = true, desc = "Remove file from Harpoon" }
-    )
-    keymap.set(
-      "n",
-      "<leader>hc",
-      '<cmd>lua require("harpoon.mark").clear_all()<cr>',
-      { noremap = true, silent = true, desc = "Clear all files in Harpoon" }
     )
     keymap.set(
       "n",
