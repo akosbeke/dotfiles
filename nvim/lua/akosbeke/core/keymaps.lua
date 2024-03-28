@@ -47,3 +47,5 @@ keymap.set("n", "<leader>lg", ":LazyGit<cr>", { desc = "Open floating LazyGit" }
 
 -- Clear all buffers except the current one
 keymap.set("n", "<leader>cb", ":%bd|e3#<cr>", { desc = "Clear all buffers except the current one" })
+
+keymap.set("n", "<leader>Q", ":wq<cr>", { desc = "Save file and quit buffer" })
