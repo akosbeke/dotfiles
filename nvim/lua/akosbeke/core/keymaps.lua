@@ -29,8 +29,8 @@ keymap.set("n", "Q", "<nop>")
 keymap.set("n", "q", "<nop>")
 
 -- Search replace on current word
-keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "" })
-keymap.set("v", "<leader>s", [[y<Esc>:%s/<C-R>"//g<Left><Left>]], { desc = "" })
+keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace" })
+keymap.set("v", "<leader>S", [[y<Esc>:%s/<C-R>"//g<Left><Left>]], { desc = "Search and replace" })
 
 -- close quickfix menu after selecting choice
 vim.api.nvim_create_autocmd("FileType", {
@@ -48,4 +48,7 @@ keymap.set("n", "<leader>lg", ":LazyGit<cr>", { desc = "Open floating LazyGit" }
 -- Clear all buffers except the current one
 keymap.set("n", "<leader>cb", ":%bd|e3#<cr>", { desc = "Clear all buffers except the current one" })
 
-keymap.set("n", "<leader>Q", ":wq<cr>", { desc = "Save file and quit buffer" })
+keymap.set("n", "<leader>qs", ":wq<cr>", { desc = "Save file and quit buffer" })
+keymap.set("v", "<leader>qs", ":wq<cr>", { desc = "Save file and quit buffer" })
+keymap.set("n", "<leader>s", ":w<cr>", { desc = "Save file" })
+keymap.set("v", "<leader>s", ":w<cr>", { desc = "Save file" })
