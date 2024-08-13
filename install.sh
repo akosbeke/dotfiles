@@ -10,13 +10,9 @@ ln -sf $DOTFILES/.zshrc $HOME/.zshrc
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
-# Yabai
-rm -rf $HOME/.config/yabai
-ln -s $DOTFILES/yabai $HOME/.config/yabai
-
-# skhd
-rm -rf $HOME/.config/skhd
-ln -s $DOTFILES/skhd $HOME/.config/skhd
+# AeroSpace
+rm -rf $HOME/.config/aerospace
+ln -s $DOTFILES/aerospace $HOME/.config/aerospace
 
 # Karabiner
 rm -rf $HOME/.config/karabiner
