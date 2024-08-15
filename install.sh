@@ -14,6 +14,10 @@ ln -s $DOTFILES/nvim $HOME/.config/nvim
 rm -rf $HOME/.config/aerospace
 ln -s $DOTFILES/aerospace $HOME/.config/aerospace
 
+# Borders
+rm -rf $HOME/.config/borders
+ln -s $DOTFILES/borders $HOME/.config/borders
+
 # Karabiner
 rm -rf $HOME/.config/karabiner
 ln -s $DOTFILES/karabiner $HOME/.config/karabiner
