@@ -154,6 +154,10 @@ if.app-id = 'org.alacritty'
 run = ['move-node-to-workspace U']
 
 [[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = ['move-node-to-workspace U']
+
+[[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = ['move-node-to-workspace U']
 

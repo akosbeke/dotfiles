@@ -27,3 +27,8 @@ ln -sf $DOTFILES/.tmux.conf $HOME/.tmux.conf
 
 # Alacritty
 ln -sf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml
+
+# Kitty
+rm -rf $HOME/.config/kitty
+ln -s $DOTFILES/kitty $HOME/.config/kitty
+git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes
