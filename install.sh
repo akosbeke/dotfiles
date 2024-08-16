@@ -31,3 +31,7 @@ ln -sf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml
 # Kitty
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
+
+# Wezterm
+rm -rf $HOME/.config/wezterm
+ln -s $DOTFILES/wezterm $HOME/.config/wezterm
