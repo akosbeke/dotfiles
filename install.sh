@@ -6,6 +6,9 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # ZSH
 ln -sf $DOTFILES/.zshrc $HOME/.zshrc
 
+# Fira Code Nerd Font
+brew install font-fira-code-nerd-font
+
 # Neovim
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
