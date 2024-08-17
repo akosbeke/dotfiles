@@ -5,6 +5,9 @@ return {
   config = function()
     require("gruvbox").setup({
       transparent_mode = true,
+      overrides = {
+        CursorLine = { bg = "#504945" },
+      },
     })
     vim.o.background = "dark" -- or "light" for light mode
     vim.cmd([[colorscheme gruvbox]])
