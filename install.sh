@@ -28,6 +28,10 @@ ln -s $DOTFILES/karabiner $HOME/.config/karabiner
 # Tmux
 ln -sf $DOTFILES/.tmux.conf $HOME/.tmux.conf
 
+# Tmux Powerline
+rm -rf $HOME/.config/tmux-powerline
+ln -s $DOTFILES/tmux-powerline $HOME/.config/tmux-powerline
+
 # Alacritty
 ln -sf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml
 
