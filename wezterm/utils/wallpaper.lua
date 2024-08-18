@@ -5,7 +5,7 @@ local M = {}
 M.get_wallpaper = function(dir)
 	local wallpapers = {}
 	for _, v in ipairs(wezterm.glob(dir)) do
-		if not string.match(v, "%.DS_Store$") then
+		if not string.match(v, "%.DS_Store$") and not string.match(v, "%.md$") then
 			table.insert(wallpapers, v)
 		end
 	end
