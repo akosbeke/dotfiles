@@ -1,5 +1,13 @@
 local wezterm = require("wezterm")
 
+local dark_opacity = 0.9
+local light_opacity = 0.9
+
+local wallpapers_glob = wezterm.config_dir .. "/backdrops/**"
+
+local w = require("utils/wallpaper")
+local b = require("utils/background")
+
 local config = wezterm.config_builder()
 
 -- Font settings
@@ -10,31 +18,11 @@ config.font_size = 16.0
 config.color_scheme = "Gruvbox dark, medium (base16)"
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
-config.window_padding = { left = 10, right = 10, top = 5, bottom = 0 }
+config.window_padding = { left = 11, right = 10, top = 5, bottom = 0 }
 
 config.background = {
-	{
-		source = {
-			Color = "#282828",
-		},
-		width = "100%",
-		height = "100%",
-		opacity = 1,
-	},
-	{
-		source = {
-			File = wezterm.config_dir .. "/mountain1.jpg",
-		},
-		opacity = 0.2,
-	},
-	{
-		source = {
-			Color = "#282828",
-		},
-		width = "100%",
-		height = "100%",
-		opacity = 0.3,
-	},
+	w.get_wallpaper(wallpapers_glob),
+	b.get_background(dark_opacity, light_opacity),
 }
 
 return config

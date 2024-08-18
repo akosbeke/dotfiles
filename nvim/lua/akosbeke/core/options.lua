@@ -19,3 +19,4 @@ vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.o.clipboard = "unnamedplus"
