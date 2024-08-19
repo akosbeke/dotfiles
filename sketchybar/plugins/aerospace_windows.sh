@@ -3,12 +3,12 @@
 source "$CONFIG_DIR/colors.sh"
 
 reload_workspace_icon() {
-    apps=$(aerospace list-windows --workspace "$@" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+    apps=$(aerospace list-windows --workspace "$1" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
-    local label="$@"
+    local label="$1"
 
     # Conditionally set the label for leftSquareBracket
-    if [[ $@ == "leftSquareBracket" ]]; then
+    if [[ $1 == "leftSquareBracket" ]]; then
         label="["
     fi
 
@@ -22,11 +22,20 @@ reload_workspace_icon() {
         icon_strip=" —"
     fi
 
-    sketchybar --animate sin 10 --set space.$@ label="$icon_strip"
+    sketchybar --animate sin 10 --set space.$1 display=$2 label="$icon_strip"
 }
 
 if [ "$SENDER" = "space_windows_change" ]; then
-    for wspace in $(aerospace list-workspaces --all); do
-        reload_workspace_icon $wspace 
+    monitors=$(aerospace list-monitors)
+
+    # Iterate over each monitor
+    for monitor_id in $monitors; do
+        # Get the list of workspaces for the current monitor
+        monitor_workspaces=$(aerospace list-workspaces --monitor "$monitor_id")
+
+        # First, iterate over the predefined order
+        for wspace in $monitor_workspaces; do
+            reload_workspace_icon $wspace $monitor_id
+        done
     done
 fi
