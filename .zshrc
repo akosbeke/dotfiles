@@ -171,3 +171,6 @@ export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# Created by `pipx` on 2024-08-19 10:01:32
+export PATH="$PATH:/Users/akosbeke/.local/bin"
