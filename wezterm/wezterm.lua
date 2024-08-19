@@ -22,11 +22,6 @@ config.window_decorations = "RESIZE"
 config.window_padding = { left = 11, right = 10, top = 5, bottom = 0 }
 config.macos_window_background_blur = 40
 
-config.background = {
-	-- w.get_wallpaper(wallpapers_glob),
-	b.get_background(dark_opacity, light_opacity),
-}
-
 if use_wallpaper then
 	config.background = {
 		w.get_wallpaper(wallpapers_glob),
