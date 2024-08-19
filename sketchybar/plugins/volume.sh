@@ -6,15 +6,24 @@
 if [ "$SENDER" = "volume_change" ]; then
     VOLUME="$INFO"
 
-    case "$VOLUME" in
-        [6-9][0-9]|100) ICON="􀊩"
-        ;;
-        [3-5][0-9]) ICON="􀊥"
-        ;;
-        [1-9]|[1-2][0-9]) ICON="􀊡"
-        ;;
-        *) ICON="􀊣"
-    esac
+    # Check if the current audio output device supports volume control
+    supports_volume=$(osascript -e "output volume of (get volume settings)")
 
-    sketchybar --set "$NAME" icon="$ICON" label="$VOLUME%"
+    # Check if the command returned a value (indicating volume control is supported)
+    if [ "$supports_volume" == "missing value" ]; then
+        sketchybar --set "$NAME" icon="􀊣" label="N/A"
+    else
+        case "$VOLUME" in
+            [6-9][0-9]|100) ICON="􀊩"
+            ;;
+            [3-5][0-9]) ICON="􀊥"
+            ;;
+            [1-9]|[1-2][0-9]) ICON="􀊡"
+            ;;
+            *) ICON="􀊣"
+        esac
+
+        sketchybar --set "$NAME" icon="$ICON" label="$VOLUME%"
+    fi
+
 fi
