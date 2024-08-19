@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-local use_wallpaper = false
+local use_wallpaper = true
 local dark_opacity = 0.9
 local light_opacity = 0.9
 
@@ -29,7 +29,7 @@ if use_wallpaper then
 	}
 else
 	config.background = {
-		b.get_background(dark_opacity, light_opacity),
+		b.get_background(0.7, light_opacity),
 	}
 end
 

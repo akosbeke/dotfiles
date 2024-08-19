@@ -18,7 +18,10 @@ M.get_wallpaper = function(dir)
 		vertical_align = "Middle",
 		repeat_x = "Repeat",
 		repeat_y = "Repeat",
-		opacity = 1.0,
+		opacity = 1,
+		hsb = {
+			saturation = 0.2,
+		},
 	}
 end
 
