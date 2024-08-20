@@ -104,7 +104,7 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-u = 'workspace U'
+# alt-u = 'workspace U'
 alt-i = 'workspace I'
 alt-o = 'workspace O'
 alt-p = 'workspace P'
