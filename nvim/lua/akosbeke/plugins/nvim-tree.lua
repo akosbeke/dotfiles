@@ -5,6 +5,11 @@ return {
     vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#30323E" })
 
     require("nvim-tree").setup({
+      actions = {
+        open_file = {
+          quit_on_open = true,
+        },
+      },
       reload_on_bufenter = true,
       git = {
         enable = true,
@@ -24,7 +29,7 @@ return {
         },
       },
       view = {
-        width = "20%",
+        width = "40%",
         side = "right",
         relativenumber = true,
       },
