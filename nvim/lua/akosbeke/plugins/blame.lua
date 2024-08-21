@@ -6,8 +6,10 @@ return {
     keymap.set(
       "n",
       "<leader>tb",
-      ":ToggleBlame virtual<CR>",
+      ":BlameToggle virtual<CR>",
       { silent = true, noremap = true, desc = "Toggle the git blame window" }
     )
+
+    require("blame").setup()
   end,
 }
