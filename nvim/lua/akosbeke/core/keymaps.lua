@@ -26,7 +26,6 @@ keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Disable Q
 keymap.set("n", "Q", "<nop>")
-keymap.set("n", "q", "<nop>")
 
 -- Search replace on current word
 keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace" })
