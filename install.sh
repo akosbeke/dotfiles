@@ -13,6 +13,9 @@ brew install font-fira-code-nerd-font
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
+# Lazygit
+ln -s $HOME/.config/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
+
 # AeroSpace
 rm -rf $HOME/.config/aerospace
 ln -s $DOTFILES/aerospace $HOME/.config/aerospace
