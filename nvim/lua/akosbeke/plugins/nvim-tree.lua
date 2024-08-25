@@ -44,15 +44,9 @@ return {
 
     keymap.set(
       "n",
-      "<leader>n",
+      "<leader>f",
       ":NvimTreeFindFileToggle<CR>",
       { silent = true, noremap = true, desc = "Toggle file explorer" }
-    )
-    keymap.set(
-      "n",
-      "<leader>N",
-      ":NvimTreeFocus<CR>",
-      { silent = true, noremap = true, desc = "Set focus to file explorer" }
     )
 
     local function open_nvim_tree()

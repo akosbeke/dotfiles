@@ -1,7 +1,8 @@
 return {
   "lewis6991/gitsigns.nvim",
-  dependencies = { { "nvim-lua/plenary.nvim" } },
-  event = { "BufReadPre", "BufNewFile" },
-  opts = { sign_priority = 20 },
-  config = true,
+  config = function()
+    require("gitsigns").setup()
+
+    vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
+  end,
 }
