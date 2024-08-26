@@ -51,3 +51,9 @@ keymap.set("n", "<leader>qs", ":wq<cr>", { desc = "Save file and quit buffer" })
 keymap.set("v", "<leader>qs", ":wq<cr>", { desc = "Save file and quit buffer" })
 keymap.set("n", "<leader>s", ":w<cr>", { desc = "Save file" })
 keymap.set("v", "<leader>s", ":w<cr>", { desc = "Save file" })
+
+-- Splits
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
