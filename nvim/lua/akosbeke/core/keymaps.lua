@@ -10,9 +10,6 @@ keymap.set("v", ">", ">gv", { desc = "Decrease indent" })
 -- Open the current file in the default program (on Mac I think this is just `open`)
 keymap.set("n", "<leader>oo", ":!open %<cr><cr>", { desc = "Open file in default program" })
 
--- Run the eslint fixer
-keymap.set("n", "efa", ":EslintFixAll<cr>", { desc = "Eslint fix all" })
-
 -- List git conflicts
 keymap.set("n", "<leader>cl", ":GitConflictListQf<cr>", { desc = "" })
 
@@ -47,10 +44,10 @@ keymap.set("n", "<leader>lg", ":LazyGit<cr>", { desc = "Open floating LazyGit" }
 -- Clear all buffers except the current one
 keymap.set("n", "<leader>cb", ":%bd|e3#<cr>", { desc = "Clear all buffers except the current one" })
 
-keymap.set("n", "<leader>qs", ":wq<cr>", { desc = "Save file and quit buffer" })
-keymap.set("v", "<leader>qs", ":wq<cr>", { desc = "Save file and quit buffer" })
-keymap.set("n", "<leader>s", ":w<cr>", { desc = "Save file" })
-keymap.set("v", "<leader>s", ":w<cr>", { desc = "Save file" })
+keymap.set("n", "<leader>Q", ":wq<cr>", { desc = "Save file and quit buffer" })
+keymap.set("v", "<leader>Q", ":wq<cr>", { desc = "Save file and quit buffer" })
+keymap.set("n", "<leader>w", ":w<cr>", { desc = "Save file" })
+keymap.set("v", "<leader>w", ":w<cr>", { desc = "Save file" })
 
 -- Splits
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })

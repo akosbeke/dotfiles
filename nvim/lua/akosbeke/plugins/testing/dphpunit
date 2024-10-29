@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Customize the following:
+containerName=$CONTAINER
+phpunitPath=$REMOTE_PHPUNIT_BIN
+# Needed for monorepos
+subPath=$SUB_PATH
+
+# Detect local path and remove from args
+localPhpUnitResultPath='/tmp/phpunit-result.xml'
+argsInput=${@}
+runFile=$(echo "$argsInput" | awk '{print $1}')
+phpTestPath=$(dirname "$runFile")
+pushd "$phpTestPath" > /dev/null
+projectPath="$(git rev-parse --show-toplevel)"
+popd > /dev/null
+
+## Detect test result output
+outputPath=""
+filteredArgs=()
+
+for arg in "$@"; do
+   case $arg in
+       --log-junit=*)
+           outputPath="${arg#*=}"  # Store the value of --log-junit
+           ;;
+       *)
+           filteredArgs+=("$arg")  # Add other args to filteredArgs
+           ;;
+   esac
+done
+
+# Detect path
+container=$(docker ps -n=-1 --filter name=$containerName --format="{{.ID}}")
+dockerPath=$(docker inspect --format "{{.Config.WorkingDir}}" $container)
+
+# Replace with local paths in args
+args=("${filteredArgs[@]/$projectPath$subPath\//}")
+
+# Replace strange line with (data set .*)
+args=("${args[@]//(*}")
+
+## Debug
+# echo "Raw Args: ${argsInput[@]}"
+# echo "Params: ${args[@]}"
+# echo "Docker: $dockerPath"
+# echo "Local:  $projectPath"
+echo "Result: $outputPath"
+
+# Run the tests
+docker exec -i "$container" php -d memory_limit=-1 "$phpunitPath" "${args[@]}" --log-junit="${localPhpUnitResultPath}"
+
+# Copy results
+docker cp -a "$container:$localPhpUnitResultPath" "$outputPath" &> /dev/null
+
+# Replace Docker path with local paths
+sed -i '_' "s#$dockerPath#$projectPath$subPath#g" "$outputPath"
+

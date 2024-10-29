@@ -4,7 +4,7 @@ return {
   init = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 500
-    vim.keymap.set("n", "<leader>wk", "<cmd>WhichKey<CR>", { silent = true, desc = "Open WhichKey menu" })
+    vim.keymap.set("n", "<leader>?", "<cmd>WhichKey<CR>", { silent = true, desc = "Open WhichKey menu" })
   end,
   opts = {},
 }
