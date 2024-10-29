@@ -30,6 +30,10 @@ chmod +x $HOME/.config/sketchybar/plugins/*
 rm -rf $HOME/.config/borders
 ln -s $DOTFILES/borders $HOME/.config/borders
 
+# Yazi
+rm -rf $HOME/.config/yazi
+ln -s $DOTFILES/yazi $HOME/.config/yazi
+
 # Karabiner
 rm -rf $HOME/.config/karabiner
 ln -s $DOTFILES/karabiner $HOME/.config/karabiner

@@ -7,11 +7,6 @@ reload_workspace_icon() {
 
     local label="$1"
 
-    # Conditionally set the label for leftSquareBracket
-    if [[ $1 == "leftSquareBracket" ]]; then
-        label="["
-    fi
-
     icon_strip=" "
     if [ "${apps}" != "" ]; then
         while read -r app

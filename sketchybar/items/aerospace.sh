@@ -3,7 +3,7 @@
 sketchybar --add event aerospace_workspace_change
 
 # Define the specific order of workspaces
-workspace_order=("U" "I" "O" "P" "leftSquareBracket" "7" "8")
+workspace_order=("U" "I" "O" "P" "Z" "7" "8")
 
 # Get the list of all monitors
 monitors=$(aerospace list-monitors)
@@ -16,11 +16,6 @@ add_workspace_to_sketchybar() {
     local sid=$1
     local monitor_id=$2
     local label="$sid"
-
-    # Conditionally set the label for leftSquareBracket
-    if [[ $sid == "leftSquareBracket" ]]; then
-        label="["
-    fi
 
     sketchybar --add item space.$sid left \
         --subscribe space.$sid aerospace_workspace_change \
