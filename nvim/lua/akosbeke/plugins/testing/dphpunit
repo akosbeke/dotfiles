@@ -45,7 +45,7 @@ args=("${args[@]//(*}")
 # echo "Params: ${args[@]}"
 # echo "Docker: $dockerPath"
 # echo "Local:  $projectPath"
-echo "Result: $outputPath"
+# echo "Result: $outputPath"
 
 # Run the tests
 docker exec -i "$container" php -d memory_limit=-1 "$phpunitPath" "${args[@]}" --log-junit="${localPhpUnitResultPath}"

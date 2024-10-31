@@ -13,15 +13,18 @@ return {
     dap.adapters.php = {
       type = "executable",
       command = "node",
-      args = { "~/Code/dotfiles/nvim/debugger/vscode-php-debug/out/phpDebug.js" },
+      args = { "/Users/akosbeke/Code/dotfiles/nvim/debugger/vscode-php-debug/out/phpDebug.js" },
     }
 
     dap.configurations.php = {
       {
         type = "php",
         request = "launch",
-        name = "Listen for Xdebug",
+        name = "lingoda",
         port = 9003,
+        pathMappings = {
+          ["/app/linguando"] = "/Users/akosbeke/Lingoda/lingoda/linguando",
+        },
       },
     }
 
