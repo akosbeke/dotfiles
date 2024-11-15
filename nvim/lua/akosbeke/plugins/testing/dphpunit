@@ -48,7 +48,7 @@ args=("${args[@]//(*}")
 # echo "Result: $outputPath"
 
 # Run the tests
-docker exec -i "$container" php -d memory_limit=-1 "$phpunitPath" "${args[@]}" --log-junit="${localPhpUnitResultPath}"
+docker exec -i "$container" php -d memory_limit=-1 "$phpunitPath" "${args[@]}" --colors=always --log-junit="${localPhpUnitResultPath}"
 
 # Copy results
 docker cp -a "$container:$localPhpUnitResultPath" "$outputPath" &> /dev/null

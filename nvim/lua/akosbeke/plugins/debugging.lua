@@ -28,6 +28,25 @@ return {
       },
     }
 
+    dap.adapters["pwa-node"] = {
+      type = "server",
+      host = "localhost",
+      port = "${port}",
+      executable = {
+        command = "node",
+        args = { "/Users/akosbeke/Code/dotfiles/nvim/debugger/js-debug/src/dapDebugServer.js", "${port}" },
+      },
+    }
+
+    dap.configurations.typescript = {
+      {
+        type = "pwa-node",
+        request = "attach",
+        name = "Lingoda - Quiz Engine",
+        attachSimplePort = 9229,
+      },
+    }
+
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
     end
@@ -43,5 +62,7 @@ return {
 
     vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
     vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue Debugging" })
+    vim.keymap.set("n", "<leader>do", dapui.open, { desc = "Open Debugger" })
+    vim.keymap.set("n", "<leader>dx", dapui.close, { desc = "Close Debugger" })
   end,
 }

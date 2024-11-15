@@ -4,6 +4,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
+    "nvim-lua/plenary.nvim",
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -117,6 +118,74 @@ return {
       },
     })
 
+    -- PHPactor LSP snippets
+    local Float = require("plenary.window.float")
+
+    vim.api.nvim_create_augroup("LspPhpactor", { clear = true })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "LspPhpactor",
+      callback = function()
+        vim.api.nvim_create_user_command("LspPhpactorReindex", function()
+          vim.lsp.buf_notify(0, "phpactor/indexer/reindex", {})
+        end, {})
+        vim.api.nvim_create_user_command("LspPhpactorConfig", function()
+          LspPhpactorDumpConfig()
+        end, {})
+        vim.api.nvim_create_user_command("LspPhpactorStatus", function()
+          LspPhpactorStatus()
+        end, {})
+        vim.api.nvim_create_user_command("LspPhpactorBlackfireStart", function()
+          LspPhpactorBlackfireStart()
+        end, {})
+        vim.api.nvim_create_user_command("LspPhpactorBlackfireFinish", function()
+          LspPhpactorBlackfireFinish()
+        end, {})
+      end,
+    })
+
+    local function showWindow(title, syntax, contents)
+      local out = {}
+      for match in string.gmatch(contents, "[^\n]+") do
+        table.insert(out, match)
+      end
+
+      local float = Float.percentage_range_window(0.6, 0.4, { winblend = 0 }, {
+        title = title,
+        topleft = "┌",
+        topright = "┐",
+        top = "─",
+        left = "│",
+        right = "│",
+        botleft = "└",
+        botright = "┘",
+        bot = "─",
+      })
+
+      vim.api.nvim_buf_set_option(float.bufnr, "filetype", syntax)
+      vim.api.nvim_buf_set_lines(float.bufnr, 0, -1, false, out)
+    end
+
+    function LspPhpactorDumpConfig()
+      local results, _ = vim.lsp.buf_request_sync(0, "phpactor/debug/config", { ["return"] = true })
+      for _, res in pairs(results or {}) do
+        pcall(showWindow, "Phpactor LSP Configuration", "json", res["result"])
+      end
+    end
+    function LspPhpactorStatus()
+      local results, _ = vim.lsp.buf_request_sync(0, "phpactor/status", { ["return"] = true })
+      for _, res in pairs(results or {}) do
+        pcall(showWindow, "Phpactor Status", "markdown", res["result"])
+      end
+    end
+
+    function LspPhpactorBlackfireStart()
+      local _, _ = vim.lsp.buf_request_sync(0, "blackfire/start", {})
+    end
+    function LspPhpactorBlackfireFinish()
+      local _, _ = vim.lsp.buf_request_sync(0, "blackfire/finish", {})
+    end
+
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
@@ -138,4 +207,4 @@ return {
       },
     })
   end,
-}
+} -- requires plenary (which is required by telescope)

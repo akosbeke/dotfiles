@@ -13,6 +13,12 @@ brew install font-fira-code-nerd-font
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
+# Phpactor
+rm -rf $HOME/.config/phpactor
+ln -s $DOTFILES/phpactor $HOME/.config/phpactor
+
+brew install watchman
+
 # Lazygit
 ln -s $HOME/.config/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
 

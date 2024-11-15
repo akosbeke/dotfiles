@@ -1,0 +1,5 @@
+{
+  "indexer.enabled_watchers": ["watchman", "lsp", "inotify", "find", "php"],
+  "language_server.profile": true,
+  "language_server.trace": true
+}
