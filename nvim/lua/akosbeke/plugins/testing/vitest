@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# Absolute path of this file
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FILE="${!#}"
+
+# echo "All args:"
+# for arg in "$@"; do
+#   echo "$arg"
+# done
+
+# # Extract all args except the last one (the test file)
+args=("${@:1:$(($#-1))}")
+
+# Filter out --config, -c, and --testNamePattern flags (and their values)
+filtered_args=()
+skip_next=0
+test_name_pattern=""
+for (( i=0; i<${#args[@]}; i++ )); do
+  arg="${args[i]}"
+
+  if [[ $skip_next -eq 1 ]]; then
+    skip_next=0
+    continue
+  fi
+
+  if [[ "$arg" == "--config"* ]]; then
+    continue
+  elif [[ "$arg" == "-c" ]]; then
+    skip_next=1
+    continue
+  elif [[ "$arg" == --testNamePattern=* ]]; then
+    pattern="${arg#*=}"
+    test_name_pattern="${pattern#^}"                  # Remove leading ^
+    test_name_pattern="${test_name_pattern%$}"        # Remove trailing $
+    continue
+  elif [[ "$arg" == "--testNamePattern" ]]; then
+    pattern="${args[i+1]}"
+    skip_next=1
+    test_name_pattern="${pattern#^}"                  # Remove leading ^
+    test_name_pattern="${test_name_pattern%$}"        # Remove trailing $
+    continue
+  fi
+
+  filtered_args+=("$arg")
+done
+
+# If we have a test name pattern, add it
+if [[ -n "$test_name_pattern" ]]; then
+  filtered_args+=("--testNamePattern=$test_name_pattern")
+fi
+
+output_file=""
+for (( i=0; i<${#args[@]}; i++ )); do
+  arg="${args[i]}"
+  if [[ "$arg" == --outputFile=* ]]; then
+    output_file="${arg#*=}"
+    break
+  elif [[ "$arg" == "--outputFile" ]]; then
+    output_file="${args[i+1]}"
+    break
+  fi
+done
+
+# You can customize this path
+QUIZ_ENGINE_ROOT="/Users/akosbeke/Lingoda/lingoda/quiz-engine"
+
+# Remove leading slash from relative path
+REL_PATH="${FILE#$QUIZ_ENGINE_ROOT/}"
+
+CONFIG="vitest.config.ts"
+[[ "$FILE" == *.e2e-spec.ts ]] && CONFIG="vitest.e2e.config.ts"
+
+# Use Docker for quiz engine project
+if [[ "$FILE" == "$QUIZ_ENGINE_ROOT"* ]]; then
+    CMD=(docker exec -w /app quizengine-nodejs-1 npx vitest --config=$CONFIG ${filtered_args[*]} $REL_PATH)
+    docker exec -w /app quizengine-nodejs-1 npx vitest run --config=$CONFIG ${filtered_args[*]} $REL_PATH
+
+    docker cp -a quizengine-nodejs-1:"$output_file" "$output_file" &> /dev/null
+
+    # Replace /app with host path
+    sed -i.bak "s|/app|$QUIZ_ENGINE_ROOT|g" "$output_file"
+    rm "$output_file.bak"
+else
+  npx vitest run --config="$CONFIG" "${filtered_args[@]}" "$FILE"
+fi
+
+
+# echo "Running: ${CMD[*]}" >&2

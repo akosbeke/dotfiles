@@ -11,7 +11,6 @@ return {
   config = function()
     require("neotest").setup({
       adapters = {
-        require("neotest-vitest"),
         require("neotest-phpunit")({
           root_files = { "composer.json", "phpunit.xml", "phpunit.xml.dist", ".github" },
           filter_dirs = { "vendor" },
@@ -23,6 +22,36 @@ return {
           },
           phpunit_cmd = function()
             return "/Users/akosbeke/Code/dotfiles/nvim/lua/akosbeke/plugins/testing/dphpunit"
+          end,
+        }),
+        require("neotest-vitest")({
+          vitestCommand = function()
+            return "/Users/akosbeke/Code/dotfiles/nvim/lua/akosbeke/plugins/testing/vitest"
+          end,
+          ---Custom criteria for a file path to determine if it is a vitest test file.
+          ---@async
+          ---@param file_path string Path of the potential vitest test file
+          ---@return boolean
+          is_test_file = function(file_path)
+            if file_path == nil then
+              return false
+            end
+            local is_test_file = false
+
+            if string.match(file_path, "__tests__") then
+              is_test_file = true
+            end
+
+            for _, x in ipairs({ "e2e", "spec", "test", "e2e%-spec" }) do
+              for _, ext in ipairs({ "js", "jsx", "coffee", "ts", "tsx" }) do
+                if string.match(file_path, "%." .. x .. "%." .. ext .. "$") then
+                  is_test_file = true
+                  goto matched_pattern
+                end
+              end
+            end
+            ::matched_pattern::
+            return is_test_file
           end,
         }),
       },
