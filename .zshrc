@@ -4,7 +4,7 @@
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/akosbeke/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -161,13 +161,3 @@ alias lt-upload="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:trans
 alias lt-upload-dr="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:translations:upload --dry-run)"
 alias lt-download="(cd $LINGODA_PATH/lingoda/linguando && php bin/console lg:translations:download --parent-branch master)"
 
-eval "$(github-copilot-cli alias -- "$0")"
-export PATH="/opt/homebrew/opt/php@8.2/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# Created by `pipx` on 2024-08-19 10:01:32
-export PATH="$PATH:/Users/akosbeke/.local/bin"
