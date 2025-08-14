@@ -27,6 +27,12 @@ mkdir -p "$HOME/.config/wezterm"
 # ZSH
 ln -sf $DOTFILES/.zshrc $HOME/.zshrc
 
+# NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+nvm install --lts
+nvm use --lts
+npm install -g yarn
+
 # Only for macOS
 if [ "$OS_TYPE" = "macos" ]; then
     # Fira Code Nerd Font
