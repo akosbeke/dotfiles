@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# Get the os parameter, if not provided, ask for it (macos or debian)
+# Get the os parameter, if not provided, ask for it (macos or arch)
 if [ -z "$1" ]; then
-  echo "Please provide the OS type (macos or debian)."
+  echo "Please provide the OS type (macos or arch)."
   echo "Usage: $0 <os_type>"
   exit 1
 fi
 
 OS_TYPE="$1"
 
-if [ "$OS_TYPE" != "macos" ] && [ "$OS_TYPE" != "debian" ]; then
-  echo "Invalid OS type. Please use 'macos' or 'debian'."
+if [ "$OS_TYPE" != "macos" ] && [ "$OS_TYPE" != "arch" ]; then
+  echo "Invalid OS type. Please use 'macos' or 'arch'."
   exit 1
 fi
 
@@ -57,8 +57,14 @@ else
 fi
 
 # # Yazi
-# rm -rf $HOME/.config/yazi
-# ln -s $DOTFILES/yazi $HOME/.config/yazi
+if [ "$OS_TYPE" = "macos" ]; then
+    # Yazi for macOS
+    brew install yazi
+else
+    sudo pacman -S yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick
+fi
+rm -rf $HOME/.config/yazi
+ln -s $DOTFILES/yazi $HOME/.config/yazi
 
 # Karabiner
 rm -rf $HOME/.config/karabiner
