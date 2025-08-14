@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Get the os parameter, if not provided, ask for it (macos or debian)
 if [ -z "$1" ]; then
@@ -16,6 +16,13 @@ fi
 
 # Current path
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/nvim"
+mkdir -p "$HOME/.config/phpactor"
+mkdir -p "$HOME/.config/yazi"
+mkdir -p "$HOME/.config/karabiner"
+mkdir -p "$HOME/.config/wezterm"
 
 # ZSH
 ln -sf $DOTFILES/.zshrc $HOME/.zshrc
@@ -37,15 +44,21 @@ ln -s $DOTFILES/phpactor $HOME/.config/phpactor
 if [ "$OS_TYPE" = "macos" ]; then
     brew install watchman
 else
-    apt install -y watchman
+    sudo apt install -y watchman
 fi
 
-# Lazygit
-ln -s $HOME/.config/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
+# Lazygit config linking
+if [ "$OS_TYPE" = "macos" ]; then
+    mkdir -p "$HOME/Library/Application Support/lazygit"
+    ln -sf "$DOTFILES/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
+else
+    mkdir -p "$HOME/.config/lazygit"
+    ln -sf "$DOTFILES/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+fi
 
-# Yazi
-rm -rf $HOME/.config/yazi
-ln -s $DOTFILES/yazi $HOME/.config/yazi
+# # Yazi
+# rm -rf $HOME/.config/yazi
+# ln -s $DOTFILES/yazi $HOME/.config/yazi
 
 # Karabiner
 rm -rf $HOME/.config/karabiner
