@@ -17,7 +17,7 @@ config.font_size = 16.0
 
 -- Appearance settings
 config.color_scheme = "Gruvbox dark, medium (base16)"
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.window_decorations = "RESIZE"
 config.window_padding = { left = 11, right = 10, top = 5, bottom = 0 }
 config.macos_window_background_blur = 40
