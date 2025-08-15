@@ -120,7 +120,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias dev='ssh akosbeke@archlinux.loc -t "tmux a || tmux"'
+alias dev='ssh -t akosbeke@archlinux.loc "bash -l -c '\''tmux a || tmux'\''"'
 alias dev-tunnels='echo "Development tunnels were opened... (Ctrl + C to close them)" && ssh -N -L 3306:localhost:3306 -L 6379:localhost:6379 -L 5433:localhost:5433 akosbeke@archlinux.loc'
 alias nvim="nvim --listen /tmp/nvim-server-$(tmux display-message -p '#S').pipe"
 alias gv='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
