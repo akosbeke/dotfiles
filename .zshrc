@@ -120,6 +120,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias dev='ssh akosbeke@archlinux.loc -t "tmux a || tmux"'
+alias dev-tunnels='ssh -L 3306:localhost:3306 -L 6379:localhost:6379 -L 5433:localhost:5433 -L akosbeke@archlinux.loc'
 alias nvim="nvim --listen /tmp/nvim-server-$(tmux display-message -p '#S').pipe"
 alias gv='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias gr="git fetch && git rebase origin/master"
@@ -143,7 +145,7 @@ export PATH="$HOME/.symfony/bin:$PATH"
 # Lingoda Dev Aliases
 export LINGODA_PATH="~/Lingoda"
 alias lingoda="sh $LINGODA_PATH/lingoda/linguando/devops/localdev/localdev.sh"
-alias lm="make -s -C $LINGODA_PATH/lingoda/linguando/devops/localdev/docker"
+alias lm="export DOCKER__LISTEN_HOST=0.0.0.0 && make -s -C $LINGODA_PATH/lingoda/linguando/devops/localdev/docker"
 alias qm="make -s -C $LINGODA_PATH/lingoda/quiz-engine/devops/localdev"
 alias l-student="( (nginx -s reload || nginx) && cd $LINGODA_PATH/lingoda/linguando && yarn student_frontend:watch)"
 alias l-student-sym="(cd $LINGODA_PATH/lingoda/linguando && yarn student:watch)"
