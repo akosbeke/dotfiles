@@ -37,6 +37,9 @@ npm install -g yarn
 if [ "$OS_TYPE" = "macos" ]; then
     # Fira Code Nerd Font
     brew install font-fira-code-nerd-font
+else
+    # Install Fira Code font for Arch Linux
+    sudo pacman -S --noconfirm ttf-fira-code
 fi
 
 # Neovim
